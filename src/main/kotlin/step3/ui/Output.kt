@@ -10,12 +10,10 @@ object Output {
     }
 
     private fun printCars(cars: List<Car>, round: Round) {
-        var list = cars
+        var carList = cars
         repeat(round.number) {
-            list = list.map {
-                it.move()
-            }
-            printCar(list)
+            carList = carList.map { it.move() }
+            printCar(carList)
         }
     }
 
