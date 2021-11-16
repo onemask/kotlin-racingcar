@@ -1,27 +1,29 @@
 package step3.ui
 
 import step3.Car
-import step3.Cars
 import step3.Round
 
 object Output {
-    fun printResult(cars: Cars, round: Round) {
+    fun printResult(cars: List<Car>, round: Round) {
         println(RESULT_OF_EXECUTE)
         printCars(cars, round)
     }
 
-    private fun printCars(cars: Cars, round: Round) {
+    private fun printCars(cars: List<Car>, round: Round) {
+        var list = cars
         repeat(round.number) {
-            cars.carList.forEach {
-                printCar(it.move())
+            list = list.map {
+                it.move()
             }
-            cars.moveCars()
-            println(END_OF_LINE)
+            printCar(list)
         }
     }
 
-    private fun printCar(car: Car) {
-        println(printForward(car))
+    private fun printCar(car: List<Car>) {
+        car.forEach {
+            println(printForward(it))
+        }
+        println(END_OF_LINE)
     }
 
     private fun printForward(car: Car): String {
